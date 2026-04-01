@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         revealIO.unobserve(e.target);
       }
     });
-  }, { threshold: 0.08 });
+  }, { threshold: 0, rootMargin: "0px 0px -5% 0px" });
   revealEls.forEach((el) => revealIO.observe(el));
 
   // ══════════════════════════════════════

@@ -2323,6 +2323,7 @@ ul { list-style: none; }
 /* ═══════════════════════════════════════
    REVEAL TRANSITIONS (replaces AOS)
    ═══════════════════════════════════════ */
+/* Default: blur + slide up (services, reviews) */
 [data-reveal] {
   opacity: 0;
   transform: translateY(40px) scale(0.97);
@@ -2333,18 +2334,56 @@ ul { list-style: none; }
   will-change: opacity, transform, filter;
 }
 
-[data-reveal="left"] {
-  transform: translateX(-50px) scale(0.97);
-}
-
-[data-reveal="right"] {
-  transform: translateX(50px) scale(0.97);
-}
-
 [data-reveal].is-visible {
   opacity: 1;
   transform: translate(0) scale(1);
   filter: blur(0);
+}
+
+/* Clip reveal — curtain wipe (projects, headers) */
+[data-reveal="clip"] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 0.85s cubic-bezier(0.16,1,0.3,1);
+  will-change: clip-path;
+}
+
+[data-reveal="clip"].is-visible {
+  clip-path: inset(0 0 0 0);
+}
+
+/* 3D Flip from left (contact info) */
+[data-reveal="flip-left"] {
+  opacity: 0;
+  filter: none;
+  transform: perspective(800px) rotateY(12deg) translateX(-40px);
+  transform-origin: left center;
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+              transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  will-change: opacity, transform;
+}
+
+[data-reveal="flip-left"].is-visible {
+  opacity: 1;
+  transform: perspective(800px) rotateY(0) translateX(0);
+}
+
+/* 3D Flip from right (contact form) */
+[data-reveal="flip-right"] {
+  opacity: 0;
+  filter: none;
+  transform: perspective(800px) rotateY(-12deg) translateX(40px);
+  transform-origin: right center;
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+              transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  will-change: opacity, transform;
+}
+
+[data-reveal="flip-right"].is-visible {
+  opacity: 1;
+  transform: perspective(800px) rotateY(0) translateX(0);
 }
 
 /* Stagger children: service cards */
