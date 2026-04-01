@@ -46,23 +46,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const navbar = document.getElementById("navbar");
   const hamburger = document.getElementById("hamburger");
   const navLinks = document.getElementById("navLinks");
+  const navSlider = document.getElementById("navSlider");
+  const allNavLinks = navLinks.querySelectorAll(".nav-link");
 
-  let lastScroll = 0;
-  window.addEventListener("scroll", () => {
-    const scrollY = window.scrollY;
-    navbar.classList.toggle("navbar--scrolled", scrollY > 50);
-
-    // Hide navbar on scroll down, show on scroll up
-    if (scrollY > 500) {
-      if (scrollY > lastScroll + 5) {
-        navbar.style.transform = "translateY(-100%)";
-      } else if (scrollY < lastScroll - 5) {
-        navbar.style.transform = "translateY(0)";
-      }
-    } else {
-      navbar.style.transform = "translateY(0)";
+  // ── Slider position ──
+  function moveSlider() {
+    const active = navLinks.querySelector(".nav-link.active");
+    if (active && navSlider && window.innerWidth > 768) {
+      const pillRect = navLinks.getBoundingClientRect();
+      const linkRect = active.getBoundingClientRect();
+      navSlider.style.left = (linkRect.left - pillRect.left) + "px";
+      navSlider.style.width = linkRect.width + "px";
     }
-    lastScroll = scrollY;
+  }
+
+  // Init slider after fonts load
+  if (document.fonts) {
+    document.fonts.ready.then(() => requestAnimationFrame(moveSlider));
+  } else {
+    requestAnimationFrame(moveSlider);
+  }
+  window.addEventListener("resize", moveSlider);
+
+  window.addEventListener("scroll", () => {
+    navbar.classList.toggle("navbar--scrolled", window.scrollY > 50);
   });
 
   hamburger.addEventListener("click", () => {
@@ -71,24 +78,30 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = navLinks.classList.contains("active") ? "hidden" : "";
   });
 
-  navLinks.querySelectorAll(".nav-link").forEach((link) => {
+  allNavLinks.forEach((link) => {
     link.addEventListener("click", () => {
+      // Immediately set active + move slider
+      allNavLinks.forEach((l) => l.classList.remove("active"));
+      link.classList.add("active");
+      moveSlider();
+
       hamburger.classList.remove("active");
       navLinks.classList.remove("active");
       document.body.style.overflow = "";
     });
   });
 
-  // Active nav link on scroll
+  // Active nav link on scroll + move slider
   const sections = document.querySelectorAll("section[id]");
   const observerNav = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const id = entry.target.getAttribute("id");
-          document.querySelectorAll(".nav-link").forEach((link) => {
+          allNavLinks.forEach((link) => {
             link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
           });
+          moveSlider();
         }
       });
     },
@@ -192,24 +205,56 @@ document.addEventListener("DOMContentLoaded", () => {
   //  SKILL FILTER TABS
   // ══════════════════════════════════════
   const skillTabs = document.querySelectorAll(".skills__tab");
+  const skillDots = document.querySelectorAll(".skills__dot");
   const skillCards = document.querySelectorAll(".skill-card");
+  const prevArrow = document.querySelector(".skills__arrow--prev");
+  const nextArrow = document.querySelector(".skills__arrow--next");
+  const categories = ["frontend", "backend", "design", "tools"];
+  let currentCategoryIndex = 0;
+
+  function filterSkills(filter) {
+    currentCategoryIndex = categories.indexOf(filter);
+
+    skillTabs.forEach((t) => {
+      t.classList.toggle("active", t.getAttribute("data-filter") === filter);
+    });
+    skillDots.forEach((d) => {
+      d.classList.toggle("active", d.getAttribute("data-filter") === filter);
+    });
+    skillCards.forEach((card) => {
+      if (card.getAttribute("data-category") === filter) {
+        card.classList.remove("hidden");
+        card.style.animation = "skillFadeIn 0.4s ease forwards";
+      } else {
+        card.classList.add("hidden");
+      }
+    });
+  }
+
+  // Initialize with frontend
+  filterSkills("frontend");
 
   skillTabs.forEach((tab) => {
     tab.addEventListener("click", () => {
-      skillTabs.forEach((t) => t.classList.remove("active"));
-      tab.classList.add("active");
-
-      const filter = tab.getAttribute("data-filter");
-
-      skillCards.forEach((card) => {
-        if (filter === "all" || card.getAttribute("data-category") === filter) {
-          card.classList.remove("hidden");
-          card.style.animation = "skillFadeIn 0.4s ease forwards";
-        } else {
-          card.classList.add("hidden");
-        }
-      });
+      filterSkills(tab.getAttribute("data-filter"));
     });
+  });
+
+  skillDots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      filterSkills(dot.getAttribute("data-filter"));
+    });
+  });
+
+  // Prev / Next arrows
+  prevArrow.addEventListener("click", () => {
+    currentCategoryIndex = (currentCategoryIndex - 1 + categories.length) % categories.length;
+    filterSkills(categories[currentCategoryIndex]);
+  });
+
+  nextArrow.addEventListener("click", () => {
+    currentCategoryIndex = (currentCategoryIndex + 1) % categories.length;
+    filterSkills(categories[currentCategoryIndex]);
   });
 
   // ══════════════════════════════════════
@@ -322,9 +367,208 @@ document.addEventListener("DOMContentLoaded", () => {
     { threshold: 0.1 }
   );
 
-  document.querySelectorAll(".service-card, .testimonial-card, .skill-card").forEach((el) => {
+  document.querySelectorAll(".service-card, .skill-card, .proj-card").forEach((el) => {
     revealObserver.observe(el);
   });
+
+  // ══════════════════════════════════════
+  //  PROJECT MARQUEE — duplicate for infinite loop
+  // ══════════════════════════════════════
+  const projTrack = document.querySelector(".proj-track");
+  if (projTrack) {
+    const cards = projTrack.querySelectorAll(".proj-card");
+    cards.forEach((card) => projTrack.appendChild(card.cloneNode(true)));
+  }
+
+  // 3D tilt removed — conflicts with marquee scroll
+
+  // ══════════════════════════════════════
+  //  TESTIMONIALS — 3-CARD GSAP
+  // ══════════════════════════════════════
+  if (typeof gsap !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const rvCards = document.querySelectorAll(".rv__card");
+    const rvDots = document.querySelectorAll(".rv__dot");
+    const rvPrev = document.querySelector(".rv__arrow--prev");
+    const rvNext = document.querySelector(".rv__arrow--next");
+    const rvWrapper = document.querySelector(".rv__wrapper");
+    let rvCenter = 1;
+    let rvAnimating = false;
+
+    // Order: [left, center, right] — center is highlighted
+    function rvSetPositions(animate) {
+      const order = [
+        (rvCenter - 1 + rvCards.length) % rvCards.length,
+        rvCenter,
+        (rvCenter + 1) % rvCards.length
+      ];
+
+      rvCards.forEach((card, i) => {
+        const pos = order.indexOf(i);
+        const isCenter = pos === 1;
+        const isVisible = pos !== -1;
+
+        if (animate && typeof gsap !== "undefined") {
+          gsap.to(card, {
+            scale: isCenter ? 1 : 0.93,
+            opacity: isCenter ? 1 : 0.4,
+            filter: isCenter ? "blur(0px) saturate(1)" : "blur(1.5px) saturate(0.5)",
+            duration: 0.5,
+            ease: "power3.out"
+          });
+
+          // Glow
+          gsap.to(card.querySelector(".rv__glow"), {
+            opacity: isCenter ? 1 : 0,
+            duration: 0.5,
+            ease: "power2.out"
+          });
+
+          // Shimmer line
+          const innerEl = card.querySelector(".rv__inner");
+          if (isCenter) {
+            innerEl.style.borderColor = "rgba(139,92,246,0.3)";
+            innerEl.style.boxShadow = "0 8px 40px rgba(139,92,246,0.1)";
+          } else {
+            innerEl.style.borderColor = "rgba(139,92,246,0.12)";
+            innerEl.style.boxShadow = "none";
+          }
+
+          // Stagger content of new center card
+          if (isCenter) {
+            const inner = card.querySelector(".rv__inner");
+            gsap.from(inner.querySelector(".rv__top"), { y: -8, opacity: 0, duration: 0.35, ease: "power2.out", delay: 0.1 });
+            gsap.from(inner.querySelector(".rv__quote"), { y: 10, opacity: 0, duration: 0.4, ease: "power2.out", delay: 0.15 });
+            gsap.from(inner.querySelector(".rv__who"), { y: 8, opacity: 0, duration: 0.35, ease: "power2.out", delay: 0.22 });
+          }
+        }
+
+        // Toggle CSS class
+        card.classList.toggle("rv__card--center", isCenter);
+
+        // Reorder in grid
+        if (isVisible) {
+          card.style.order = pos;
+          card.style.display = "";
+        }
+      });
+
+      // Update dots
+      rvDots.forEach((d, i) => {
+        d.classList.toggle("rv__dot--active", i === rvCenter);
+        if (animate) {
+          gsap.to(d, {
+            width: i === rvCenter ? 24 : 8,
+            duration: 0.35,
+            ease: "power2.out"
+          });
+        }
+      });
+    }
+
+    function rvGoTo(newCenter) {
+      if (newCenter === rvCenter || rvAnimating) return;
+      rvAnimating = true;
+      rvCenter = newCenter;
+      rvSetPositions(true);
+      setTimeout(() => { rvAnimating = false; }, 500);
+    }
+
+    // Init
+    rvSetPositions(false);
+
+    // Arrows
+    if (rvNext) rvNext.addEventListener("click", () => rvGoTo((rvCenter + 1) % rvCards.length));
+    if (rvPrev) rvPrev.addEventListener("click", () => rvGoTo((rvCenter - 1 + rvCards.length) % rvCards.length));
+
+    // Dots
+    rvDots.forEach((dot, i) => dot.addEventListener("click", () => rvGoTo(i)));
+
+    // Auto-play
+    let rvAuto = setInterval(() => rvGoTo((rvCenter + 1) % rvCards.length), 3500);
+
+    if (rvWrapper) {
+      rvWrapper.addEventListener("mouseenter", () => clearInterval(rvAuto));
+      rvWrapper.addEventListener("mouseleave", () => {
+        rvAuto = setInterval(() => rvGoTo((rvCenter + 1) % rvCards.length), 3500);
+      });
+    }
+
+    // 3D tilt on each card hover
+    if (window.innerWidth > 768) {
+      rvCards.forEach((card) => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          gsap.to(card, {
+            rotateY: x * 8,
+            rotateX: -y * 5,
+            duration: 0.4,
+            ease: "power2.out",
+            transformPerspective: 800
+          });
+          gsap.to(card.querySelector(".rv__glow"), {
+            x: x * 20, y: y * 15,
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out"
+          });
+        });
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, {
+            rotateY: 0, rotateX: 0,
+            duration: 0.6,
+            ease: "elastic.out(1, 0.5)",
+            transformPerspective: 800
+          });
+          const isCtr = card.classList.contains("rv__card--center");
+          gsap.to(card.querySelector(".rv__glow"), {
+            x: 0, y: 0,
+            opacity: isCtr ? 1 : 0,
+            duration: 0.6,
+            ease: "elastic.out(1, 0.5)"
+          });
+        });
+      });
+
+      // Magnetic arrows
+      document.querySelectorAll(".rv__arrow").forEach((btn) => {
+        btn.addEventListener("mousemove", (e) => {
+          const rect = btn.getBoundingClientRect();
+          gsap.to(btn, {
+            x: (e.clientX - rect.left - rect.width / 2) * 0.3,
+            y: (e.clientY - rect.top - rect.height / 2) * 0.3,
+            duration: 0.25, ease: "power2.out"
+          });
+        });
+        btn.addEventListener("mouseleave", () => {
+          gsap.to(btn, { x: 0, y: 0, duration: 0.4, ease: "elastic.out(1, 0.4)" });
+        });
+      });
+    }
+
+    // Scroll entrance
+    gsap.from(".rv__track", {
+      y: 40, opacity: 0, duration: 0.8, ease: "power3.out",
+      scrollTrigger: { trigger: ".rv__wrapper", start: "top 80%", toggleActions: "play none none none" }
+    });
+    gsap.from(".rv__controls", {
+      y: 20, opacity: 0, duration: 0.5, delay: 0.2, ease: "power3.out",
+      scrollTrigger: { trigger: ".rv__controls", start: "top 90%", toggleActions: "play none none none" }
+    });
+
+    // Touch swipe
+    if (rvWrapper) {
+      let startX = 0;
+      rvWrapper.addEventListener("touchstart", (e) => { startX = e.changedTouches[0].clientX; }, { passive: true });
+      rvWrapper.addEventListener("touchend", (e) => {
+        const diff = e.changedTouches[0].clientX - startX;
+        if (Math.abs(diff) > 50) rvGoTo((rvCenter + (diff < 0 ? 1 : -1) + rvCards.length) % rvCards.length);
+      }, { passive: true });
+    }
+  }
 
   // ══════════════════════════════════════
   //  HERO VISUAL — MOUSE TILT + PARALLAX
