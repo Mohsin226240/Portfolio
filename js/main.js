@@ -4,13 +4,25 @@
    ═══════════════════════════════════════════════════════ */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ── AOS Init ──
+  // ── AOS Init (hero, about, skills only) ──
   AOS.init({
-    duration: 750,
+    duration: 600,
     easing: "ease-out-cubic",
     once: true,
-    offset: 60,
+    offset: 20,
   });
+
+  // ── Custom Reveal (projects, services, reviews, contact) ──
+  const revealEls = document.querySelectorAll("[data-reveal]");
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("is-visible");
+        revealIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach((el) => revealIO.observe(el));
 
   // ══════════════════════════════════════
   //  THEME TOGGLE
@@ -549,15 +561,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Scroll entrance
-    gsap.from(".rv__track", {
-      y: 40, opacity: 0, duration: 0.8, ease: "power3.out",
-      scrollTrigger: { trigger: ".rv__wrapper", start: "top 80%", toggleActions: "play none none none" }
-    });
-    gsap.from(".rv__controls", {
-      y: 20, opacity: 0, duration: 0.5, delay: 0.2, ease: "power3.out",
-      scrollTrigger: { trigger: ".rv__controls", start: "top 90%", toggleActions: "play none none none" }
-    });
+    // No scroll entrance delay — instant visible
 
     // Touch swipe
     if (rvWrapper) {
