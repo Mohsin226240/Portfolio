@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mohsin Shahzad — Full Stack Developer & UI/UX Designer</title>
+  <meta name="description" content="Portfolio of Mohsin Shahzad — A creative Full Stack Developer and UI/UX Designer crafting modern digital experiences." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- AOS Animate On Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════ NAVBAR ═══════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="container navbar__inner">
+      <a href="#hero" class="navbar__logo">
+        <span class="logo-bracket">&lt;</span>Mohsin<span class="logo-bracket"> /&gt;</span>
+      </a>
+
+      <ul class="navbar__links" id="navLinks">
+        <li><a href="#hero" class="nav-link active">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#services" class="nav-link">Services</a></li>
+        <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="navbar__actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="navbar__hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Global floating blobs (visible across all sections) -->
+  <div class="shape shape--1"></div>
+  <div class="shape shape--2"></div>
+  <div class="shape shape--3"></div>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero" id="hero">
+    <!-- Particle dots -->
+    <div class="hero__particles" id="heroParticles"></div>
+
+    <div class="container hero__inner">
+      <div class="hero__content" data-aos="fade-right" data-aos-duration="1000">
+        <div class="hero__badge">
+          <span class="hero__badge-dot"></span>
+          Available for Freelance
+        </div>
+        <p class="hero__subtitle">Full Stack Developer & UI/UX Designer</p>
+        <h1 class="hero__headline">
+          <span class="hero__line hero__line--1">
+            <span class="hero__hello">Hello,</span> I'm <span class="hero__name-gradient">Mohsin</span>
+          </span>
+          <span class="hero__line hero__line--1" style="font-size:clamp(1.6rem,3.2vw,2.4rem)">
+            <span class="hero__name-gradient">Shahzad</span>
+          </span>
+          <span class="hero__line hero__line--2">
+            <span class="typed-text" id="typedText"></span><span class="hero__cursor">|</span>
+          </span>
+        </h1>
+        <p class="hero__tagline">
+          I build fast, responsive & scalable web applications using React, Node.js
+          & modern technologies. I also design pixel-perfect UI/UX in Figma — turning
+          complex ideas into clean, user-friendly digital products.
+        </p>
+
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <strong>3+</strong>
+            <span>Years Experience</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <strong>50+</strong>
+            <span>Projects Done</span>
+          </div>
+          <div class="hero__stat-divider"></div>
+          <div class="hero__stat">
+            <strong>30+</strong>
+            <span>Happy Clients</span>
+          </div>
+        </div>
+
+        <div class="hero__cta">
+          <a href="#contact" class="btn btn--primary btn--magnetic">
+            <span class="btn__text"><i class="fas fa-paper-plane"></i> Hire Me</span>
+          </a>
+          <a href="#projects" class="btn btn--outline btn--magnetic">
+            <span class="btn__text"><i class="fas fa-eye"></i> View Projects</span>
+          </a>
+          <a href="#" class="hero__cv-link">
+            <i class="fas fa-download"></i> Download CV
+          </a>
+        </div>
+        <div class="hero__socials">
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+        </div>
+      </div>
+
+      <div class="hero__visual" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+        <!-- Glow -->
+        <div class="hero__glow"></div>
+
+        <!-- Orbit rings -->
+        <div class="hero__orbit hero__orbit--1"><div class="hero__orbit-dot"></div></div>
+        <div class="hero__orbit hero__orbit--2"><div class="hero__orbit-dot"></div></div>
+        <div class="hero__orbit hero__orbit--3"></div>
+
+        <!-- Rounded photo -->
+        <div class="hero__photo-ring">
+          <img src="assets/images/hero-image.png" alt="Mohsin Shahzad" class="hero__img" />
+        </div>
+
+        <!-- Floating badges around photo -->
+        <div class="hero__float-card hero__float-card--1">
+          <div class="hero__fc-icon"><i class="fab fa-react"></i></div>
+          <div class="hero__fc-text"><strong>React.js</strong><span>Frontend</span></div>
+        </div>
+
+        <div class="hero__float-card hero__float-card--2">
+          <div class="hero__fc-icon"><i class="fab fa-node-js"></i></div>
+          <div class="hero__fc-text"><strong>Node.js</strong><span>Backend</span></div>
+        </div>
+
+        <div class="hero__float-card hero__float-card--3">
+          <div class="hero__fc-icon"><i class="fab fa-figma"></i></div>
+          <div class="hero__fc-text"><strong>Figma</strong><span>Design</span></div>
+        </div>
+
+        <!-- Tech icon badges on orbits -->
+        <div class="hero__tech-badge hero__tech-badge--1"><i class="fab fa-js"></i></div>
+        <div class="hero__tech-badge hero__tech-badge--2"><i class="fab fa-html5"></i></div>
+        <div class="hero__tech-badge hero__tech-badge--3"><i class="fab fa-css3-alt"></i></div>
+        <div class="hero__tech-badge hero__tech-badge--4"><i class="fab fa-git-alt"></i></div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════ ABOUT ═══════════════════ -->
+  <section class="section about" id="about">
+    <div class="container">
+      <div class="section__header" data-aos="fade-up">
+        <p class="section__subtitle">Get To Know Me</p>
+        <h2 class="section__title">About Me</h2>
+        <div class="section__divider"></div>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__image" data-aos="fade-right" data-aos-duration="800">
+          <div class="about__image-wrapper">
+            <img src="assets/images/aboutme.png" alt="Mohsin Shahzad working at desk" />
+            <div class="about__exp-badge">
+              <strong>3+</strong>
+              <span>Years of<br/>Experience</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__content" data-aos="fade-left" data-aos-duration="800">
+          <h3 class="about__heading">A passionate developer who loves turning ideas into reality</h3>
+          <p class="about__text">
+            I'm a Full Stack Developer and UI/UX Designer with 3+ years of experience building
+            modern web applications. I specialize in crafting clean, efficient code and designing
+            interfaces that users love.
+          </p>
+          <p class="about__text">
+            My approach combines technical excellence with design thinking — every project I build
+            is not just functional, but visually polished and user-centric. I believe great software
+            starts with understanding people.
+          </p>
+
+          <div class="about__stats">
+            <div class="stat-card">
+              <span class="stat-card__number" data-count="50">0</span><span class="stat-card__plus">+</span>
+              <p class="stat-card__label">Projects Completed</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__number" data-count="30">0</span><span class="stat-card__plus">+</span>
+              <p class="stat-card__label">Happy Clients</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-card__number" data-count="3">0</span><span class="stat-card__plus">+</span>
+              <p class="stat-card__label">Years Experience</p>
+            </div>
+          </div>
+
+          <a href="#contact" class="btn btn--primary">
+            <i class="fas fa-download"></i> Download CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SKILLS ═══════════════════ -->
+  <section class="section skills" id="skills">
+    <div class="container">
+      <div class="section__header" data-aos="fade-up">
+        <p class="section__subtitle">My Expertise</p>
+        <h2 class="section__title">Skills & Technologies</h2>
+        <div class="section__divider"></div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="skills__tabs" data-aos="fade-up" data-aos-delay="100">
+        <button class="skills__tab active" data-filter="all">All</button>
+        <button class="skills__tab" data-filter="frontend"><i class="fas fa-laptop-code"></i> Frontend</button>
+        <button class="skills__tab" data-filter="backend"><i class="fas fa-server"></i> Backend</button>
+        <button class="skills__tab" data-filter="design"><i class="fas fa-palette"></i> Design</button>
+        <button class="skills__tab" data-filter="tools"><i class="fas fa-tools"></i> Tools</button>
+      </div>
+
+      <div class="skills__grid">
+        <!-- Frontend Skills -->
+        <div class="skill-card" data-category="frontend" data-aos="fade-up" data-aos-delay="0">
+          <div class="skill-card__ring" data-percent="95">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fab fa-html5"></i></div>
+          </div>
+          <h4 class="skill-card__name">HTML / CSS</h4>
+          <span class="skill-card__level">Expert</span>
+        </div>
+
+        <div class="skill-card" data-category="frontend" data-aos="fade-up" data-aos-delay="50">
+          <div class="skill-card__ring" data-percent="90">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fab fa-js"></i></div>
+          </div>
+          <h4 class="skill-card__name">JavaScript</h4>
+          <span class="skill-card__level">Advanced</span>
+        </div>
+
+        <div class="skill-card" data-category="frontend" data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-card__ring" data-percent="88">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fab fa-react"></i></div>
+          </div>
+          <h4 class="skill-card__name">React.js</h4>
+          <span class="skill-card__level">Advanced</span>
+        </div>
+
+        <div class="skill-card" data-category="frontend" data-aos="fade-up" data-aos-delay="150">
+          <div class="skill-card__ring" data-percent="92">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fas fa-wind"></i></div>
+          </div>
+          <h4 class="skill-card__name">Tailwind CSS</h4>
+          <span class="skill-card__level">Expert</span>
+        </div>
+
+        <!-- Backend Skills -->
+        <div class="skill-card" data-category="backend" data-aos="fade-up" data-aos-delay="0">
+          <div class="skill-card__ring" data-percent="85">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fab fa-node-js"></i></div>
+          </div>
+          <h4 class="skill-card__name">Node.js</h4>
+          <span class="skill-card__level">Advanced</span>
+        </div>
+
+        <div class="skill-card" data-category="backend" data-aos="fade-up" data-aos-delay="50">
+          <div class="skill-card__ring" data-percent="82">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fas fa-code"></i></div>
+          </div>
+          <h4 class="skill-card__name">Express.js</h4>
+          <span class="skill-card__level">Advanced</span>
+        </div>
+
+        <div class="skill-card" data-category="backend" data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-card__ring" data-percent="80">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fas fa-database"></i></div>
+          </div>
+          <h4 class="skill-card__name">MongoDB</h4>
+          <span class="skill-card__level">Advanced</span>
+        </div>
+
+        <div class="skill-card" data-category="backend" data-aos="fade-up" data-aos-delay="150">
+          <div class="skill-card__ring" data-percent="88">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fas fa-plug"></i></div>
+          </div>
+          <h4 class="skill-card__name">REST APIs</h4>
+          <span class="skill-card__level">Advanced</span>
+        </div>
+
+        <!-- Design Skills -->
+        <div class="skill-card" data-category="design" data-aos="fade-up" data-aos-delay="0">
+          <div class="skill-card__ring" data-percent="90">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fab fa-figma"></i></div>
+          </div>
+          <h4 class="skill-card__name">Figma</h4>
+          <span class="skill-card__level">Advanced</span>
+        </div>
+
+        <div class="skill-card" data-category="design" data-aos="fade-up" data-aos-delay="50">
+          <div class="skill-card__ring" data-percent="78">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fas fa-pen-nib"></i></div>
+          </div>
+          <h4 class="skill-card__name">Adobe XD</h4>
+          <span class="skill-card__level">Intermediate</span>
+        </div>
+
+        <div class="skill-card" data-category="design" data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-card__ring" data-percent="75">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fas fa-image"></i></div>
+          </div>
+          <h4 class="skill-card__name">Photoshop</h4>
+          <span class="skill-card__level">Intermediate</span>
+        </div>
+
+        <div class="skill-card" data-category="design" data-aos="fade-up" data-aos-delay="150">
+          <div class="skill-card__ring" data-percent="88">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fas fa-bezier-curve"></i></div>
+          </div>
+          <h4 class="skill-card__name">UI/UX Design</h4>
+          <span class="skill-card__level">Advanced</span>
+        </div>
+
+        <!-- Tools -->
+        <div class="skill-card" data-category="tools" data-aos="fade-up" data-aos-delay="0">
+          <div class="skill-card__ring" data-percent="90">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fab fa-git-alt"></i></div>
+          </div>
+          <h4 class="skill-card__name">Git / GitHub</h4>
+          <span class="skill-card__level">Advanced</span>
+        </div>
+
+        <div class="skill-card" data-category="tools" data-aos="fade-up" data-aos-delay="50">
+          <div class="skill-card__ring" data-percent="95">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fas fa-code"></i></div>
+          </div>
+          <h4 class="skill-card__name">VS Code</h4>
+          <span class="skill-card__level">Expert</span>
+        </div>
+
+        <div class="skill-card" data-category="tools" data-aos="fade-up" data-aos-delay="100">
+          <div class="skill-card__ring" data-percent="70">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fab fa-docker"></i></div>
+          </div>
+          <h4 class="skill-card__name">Docker</h4>
+          <span class="skill-card__level">Intermediate</span>
+        </div>
+
+        <div class="skill-card" data-category="tools" data-aos="fade-up" data-aos-delay="150">
+          <div class="skill-card__ring" data-percent="78">
+            <svg viewBox="0 0 120 120"><circle class="skill-card__ring-bg" cx="60" cy="60" r="52"/><circle class="skill-card__ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+            <div class="skill-card__icon"><i class="fab fa-linux"></i></div>
+          </div>
+          <h4 class="skill-card__name">Linux / CLI</h4>
+          <span class="skill-card__level">Intermediate</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROJECTS ═══════════════════ -->
+  <section class="section projects" id="projects">
+    <div class="container">
+      <div class="section__header" data-aos="fade-up">
+        <p class="section__subtitle">My Recent Work</p>
+        <h2 class="section__title">Featured Projects</h2>
+        <div class="section__divider"></div>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="bento" data-aos="fade-up">
+
+        <!-- Large Card — spans 2 cols, 2 rows -->
+        <div class="bento__item bento__item--lg">
+          <div class="bento__border"></div>
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&h=700&fit=crop" alt="E-Commerce Dashboard" class="bento__img" />
+          <div class="bento__glass">
+            <div class="bento__status"><span class="bento__dot bento__dot--live"></span> Live</div>
+            <span class="bento__category">Full Stack</span>
+            <h3 class="bento__title">E-Commerce Dashboard</h3>
+            <p class="bento__desc">Comprehensive admin dashboard with real-time analytics, product management, and data visualization.</p>
+            <div class="bento__tags">
+              <span>React</span><span>Node.js</span><span>MongoDB</span><span>Chart.js</span>
+            </div>
+            <div class="bento__actions">
+              <a href="#" class="bento__btn bento__btn--primary"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+              <a href="#" class="bento__btn bento__btn--ghost"><i class="fab fa-github"></i> Code</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Medium Card — spans 1 col, 2 rows -->
+        <div class="bento__item bento__item--tall">
+          <div class="bento__border"></div>
+          <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=600&h=800&fit=crop" alt="Social Media App" class="bento__img" />
+          <div class="bento__glass">
+            <div class="bento__status"><span class="bento__dot bento__dot--live"></span> Live</div>
+            <span class="bento__category">Full Stack</span>
+            <h3 class="bento__title">Social Connect</h3>
+            <p class="bento__desc">Modern social platform with real-time messaging and personalized feed.</p>
+            <div class="bento__tags">
+              <span>Next.js</span><span>Socket.io</span><span>PostgreSQL</span>
+            </div>
+            <div class="bento__actions">
+              <a href="#" class="bento__btn bento__btn--primary"><i class="fas fa-external-link-alt"></i> Demo</a>
+              <a href="#" class="bento__btn bento__btn--ghost"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standard Card -->
+        <div class="bento__item">
+          <div class="bento__border"></div>
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop" alt="Finance Tracker" class="bento__img" />
+          <div class="bento__glass">
+            <div class="bento__status"><span class="bento__dot bento__dot--dev"></span> In Dev</div>
+            <span class="bento__category">Frontend</span>
+            <h3 class="bento__title">Finance Tracker Pro</h3>
+            <p class="bento__desc">Expense tracking & budget planning with interactive reports.</p>
+            <div class="bento__tags">
+              <span>React</span><span>D3.js</span><span>Firebase</span>
+            </div>
+            <div class="bento__actions">
+              <a href="#" class="bento__btn bento__btn--primary"><i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="bento__btn bento__btn--ghost"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Standard Card -->
+        <div class="bento__item">
+          <div class="bento__border"></div>
+          <img src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=600&h=400&fit=crop" alt="UI Kit Design System" class="bento__img" />
+          <div class="bento__glass">
+            <div class="bento__status"><span class="bento__dot bento__dot--live"></span> Live</div>
+            <span class="bento__category">Design</span>
+            <h3 class="bento__title">Design System & UI Kit</h3>
+            <p class="bento__desc">Reusable components, tokens & docs for scalable product design.</p>
+            <div class="bento__tags">
+              <span>Figma</span><span>Storybook</span><span>React</span>
+            </div>
+            <div class="bento__actions">
+              <a href="#" class="bento__btn bento__btn--primary"><i class="fas fa-external-link-alt"></i></a>
+              <a href="#" class="bento__btn bento__btn--ghost"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SERVICES ═══════════════════ -->
+  <section class="section services" id="services">
+    <div class="container">
+      <div class="section__header" data-aos="fade-up">
+        <p class="section__subtitle">What I Offer</p>
+        <h2 class="section__title">My Services</h2>
+        <div class="section__divider"></div>
+      </div>
+
+      <div class="services__grid">
+        <div class="service-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="service-card__number">01</div>
+          <div class="service-card__icon-wrap">
+            <div class="service-card__icon"><i class="fas fa-code"></i></div>
+            <div class="service-card__icon-glow"></div>
+          </div>
+          <h3>Web Development</h3>
+          <p>Building fast, responsive, and scalable web applications using modern frameworks and best practices.</p>
+          <ul class="service-card__features">
+            <li><i class="fas fa-check"></i> React & Next.js Apps</li>
+            <li><i class="fas fa-check"></i> Performance Optimized</li>
+            <li><i class="fas fa-check"></i> Clean Architecture</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card__number">02</div>
+          <div class="service-card__icon-wrap">
+            <div class="service-card__icon"><i class="fas fa-pencil-ruler"></i></div>
+            <div class="service-card__icon-glow"></div>
+          </div>
+          <h3>UI/UX Design</h3>
+          <p>Crafting intuitive, user-centered interfaces that blend aesthetics with usability and accessibility.</p>
+          <ul class="service-card__features">
+            <li><i class="fas fa-check"></i> Figma Prototyping</li>
+            <li><i class="fas fa-check"></i> User Research</li>
+            <li><i class="fas fa-check"></i> Design Systems</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card__number">03</div>
+          <div class="service-card__icon-wrap">
+            <div class="service-card__icon"><i class="fas fa-mobile-alt"></i></div>
+            <div class="service-card__icon-glow"></div>
+          </div>
+          <h3>Responsive Design</h3>
+          <p>Ensuring pixel-perfect experiences across all devices, from mobile phones to ultra-wide monitors.</p>
+          <ul class="service-card__features">
+            <li><i class="fas fa-check"></i> Mobile-First Approach</li>
+            <li><i class="fas fa-check"></i> Cross-Browser Support</li>
+            <li><i class="fas fa-check"></i> Fluid Layouts</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="service-card__number">04</div>
+          <div class="service-card__icon-wrap">
+            <div class="service-card__icon"><i class="fas fa-database"></i></div>
+            <div class="service-card__icon-glow"></div>
+          </div>
+          <h3>Backend Solutions</h3>
+          <p>Designing robust APIs, database architectures, and server-side logic for reliable applications.</p>
+          <ul class="service-card__features">
+            <li><i class="fas fa-check"></i> RESTful APIs</li>
+            <li><i class="fas fa-check"></i> Database Design</li>
+            <li><i class="fas fa-check"></i> Authentication</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="service-card__number">05</div>
+          <div class="service-card__icon-wrap">
+            <div class="service-card__icon"><i class="fas fa-search"></i></div>
+            <div class="service-card__icon-glow"></div>
+          </div>
+          <h3>SEO Optimization</h3>
+          <p>Implementing technical SEO best practices to improve search visibility and organic traffic growth.</p>
+          <ul class="service-card__features">
+            <li><i class="fas fa-check"></i> Technical SEO</li>
+            <li><i class="fas fa-check"></i> Core Web Vitals</li>
+            <li><i class="fas fa-check"></i> Schema Markup</li>
+          </ul>
+        </div>
+
+        <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="service-card__number">06</div>
+          <div class="service-card__icon-wrap">
+            <div class="service-card__icon"><i class="fas fa-rocket"></i></div>
+            <div class="service-card__icon-glow"></div>
+          </div>
+          <h3>Performance Tuning</h3>
+          <p>Optimizing load times, bundle sizes, and runtime performance for blazing-fast user experiences.</p>
+          <ul class="service-card__features">
+            <li><i class="fas fa-check"></i> Lighthouse 95+</li>
+            <li><i class="fas fa-check"></i> Lazy Loading</li>
+            <li><i class="fas fa-check"></i> Code Splitting</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
+  <section class="section testimonials" id="testimonials">
+    <div class="container">
+      <div class="section__header" data-aos="fade-up">
+        <p class="section__subtitle">What People Say</p>
+        <h2 class="section__title">Client Testimonials</h2>
+        <div class="section__divider"></div>
+      </div>
+
+      <div class="testimonials__grid">
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="0">
+          <div class="testimonial-card__quote"><i class="fas fa-quote-left"></i></div>
+          <div class="testimonial-card__rating">
+            <div class="testimonial-card__stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <span class="testimonial-card__rating-text">5.0</span>
+          </div>
+          <p class="testimonial-card__text">
+            "Mohsin delivered an outstanding e-commerce platform for us. His attention to detail and ability to translate our vision into a polished product was remarkable. Highly recommended!"
+          </p>
+          <div class="testimonial-card__divider"></div>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">
+              <span>AK</span>
+            </div>
+            <div class="testimonial-card__info">
+              <strong>Ahmed Khan</strong>
+              <span>CEO, TechVentures</span>
+            </div>
+            <div class="testimonial-card__verified" title="Verified Client">
+              <i class="fas fa-check-circle"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card testimonial-card--highlight" data-aos="fade-up" data-aos-delay="100">
+          <div class="testimonial-card__quote"><i class="fas fa-quote-left"></i></div>
+          <div class="testimonial-card__rating">
+            <div class="testimonial-card__stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            </div>
+            <span class="testimonial-card__rating-text">5.0</span>
+          </div>
+          <p class="testimonial-card__text">
+            "Working with Mohsin was a fantastic experience. He redesigned our entire platform UI and the user engagement increased by 40%. A true professional with great design sense."
+          </p>
+          <div class="testimonial-card__divider"></div>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">
+              <span>SM</span>
+            </div>
+            <div class="testimonial-card__info">
+              <strong>Sarah Mitchell</strong>
+              <span>Product Manager, DesignHub</span>
+            </div>
+            <div class="testimonial-card__verified" title="Verified Client">
+              <i class="fas fa-check-circle"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="testimonial-card__quote"><i class="fas fa-quote-left"></i></div>
+          <div class="testimonial-card__rating">
+            <div class="testimonial-card__stars">
+              <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+            </div>
+            <span class="testimonial-card__rating-text">4.5</span>
+          </div>
+          <p class="testimonial-card__text">
+            "Mohsin built our SaaS dashboard from scratch. His full-stack skills are impressive — the backend is rock-solid and the frontend is beautifully designed. Will definitely work together again."
+          </p>
+          <div class="testimonial-card__divider"></div>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">
+              <span>OF</span>
+            </div>
+            <div class="testimonial-card__info">
+              <strong>Omar Farooq</strong>
+              <span>Founder, CloudSync</span>
+            </div>
+            <div class="testimonial-card__verified" title="Verified Client">
+              <i class="fas fa-check-circle"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CONTACT ═══════════════════ -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <div class="section__header" data-aos="fade-up">
+        <p class="section__subtitle">Get In Touch</p>
+        <h2 class="section__title">Contact Me</h2>
+        <div class="section__divider"></div>
+      </div>
+
+      <div class="contact__grid">
+        <div class="contact__info" data-aos="fade-right" data-aos-duration="800">
+          <h3>Let's work together</h3>
+          <p>Have a project in mind or want to collaborate? I'd love to hear from you. Fill out the form or reach out through any of the channels below.</p>
+
+          <div class="contact__details">
+            <div class="contact__detail">
+              <div class="contact__detail-icon"><i class="fas fa-envelope"></i></div>
+              <div>
+                <strong>Email</strong>
+                <span>mohsin@example.com</span>
+              </div>
+            </div>
+            <div class="contact__detail">
+              <div class="contact__detail-icon"><i class="fas fa-phone"></i></div>
+              <div>
+                <strong>Phone</strong>
+                <span>+92 300 1234567</span>
+              </div>
+            </div>
+            <div class="contact__detail">
+              <div class="contact__detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div>
+                <strong>Location</strong>
+                <span>Lahore, Pakistan</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact__socials">
+            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <form class="contact__form" id="contactForm" data-aos="fade-left" data-aos-duration="800">
+          <div class="form-row">
+            <div class="form-group">
+              <input type="text" id="name" name="name" placeholder=" " required />
+              <label for="name">Your Name</label>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" name="email" placeholder=" " required />
+              <label for="email">Your Email</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" id="subject" name="subject" placeholder=" " required />
+            <label for="subject">Subject</label>
+          </div>
+          <div class="form-group">
+            <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
+            <label for="message">Your Message</label>
+          </div>
+          <button type="submit" class="btn btn--primary btn--full">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__top">
+        <a href="#hero" class="footer__logo">
+          <span class="logo-bracket">&lt;</span>Mohsin<span class="logo-bracket"> /&gt;</span>
+        </a>
+        <p class="footer__text">Crafting digital experiences that leave a lasting impression.</p>
+        <div class="footer__socials">
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="Dribbble"><i class="fab fa-dribbble"></i></a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Mohsin Shahzad. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <!-- Main JS -->
+  <script src="js/main.js"></script>
+</body>
+</html>
