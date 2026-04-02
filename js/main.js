@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     offset: 20,
   });
 
-  // ── Custom Reveal (projects, services, reviews, contact) ──
+  // ── Custom Reveal (services, reviews, contact) ──
   const revealEls = document.querySelectorAll("[data-reveal]");
   const revealIO = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
@@ -23,6 +23,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, { threshold: 0, rootMargin: "0px 0px -5% 0px" });
   revealEls.forEach((el) => revealIO.observe(el));
+
+  // ── Project section reveal — triggers 200px before entering viewport ──
+  const projEls = document.querySelectorAll(".proj-reveal");
+  const projIO = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("is-visible");
+        projIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: "0px 0px 200px 0px" });
+  projEls.forEach((el) => projIO.observe(el));
 
   // ══════════════════════════════════════
   //  THEME TOGGLE
@@ -379,20 +391,18 @@ document.addEventListener("DOMContentLoaded", () => {
     { threshold: 0.1 }
   );
 
-  document.querySelectorAll(".service-card, .skill-card, .proj-card").forEach((el) => {
+  document.querySelectorAll(".service-card, .skill-card").forEach((el) => {
     revealObserver.observe(el);
   });
 
   // ══════════════════════════════════════
-  //  PROJECT MARQUEE — duplicate for infinite loop
+  //  PROJECT MARQUEE — duplicate cards for seamless infinite loop
   // ══════════════════════════════════════
   const projTrack = document.querySelector(".proj-track");
   if (projTrack) {
     const cards = projTrack.querySelectorAll(".proj-card");
     cards.forEach((card) => projTrack.appendChild(card.cloneNode(true)));
   }
-
-  // 3D tilt removed — conflicts with marquee scroll
 
   // ══════════════════════════════════════
   //  TESTIMONIALS — 3-CARD GSAP
